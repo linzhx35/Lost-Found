@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis mapper for Type -->
+<mapper namespace="com.example.LostAndFoundSystem.mapper.TypeMapper">
+    <!-- Insert a new type -->
+    <insert id="insertType" parameterType="com.example.LostAndFoundSystem.entity.Type">
+        INSERT INTO Type (type_id, typename)
+        VALUES (#{type_id}, #{typename})
+    </insert>
+
+    <!-- Update an existing type -->
+    <update id="updateType" parameterType="com.example.LostAndFoundSystem.entity.Type">
+        UPDATE Type SET typename=#{typename}
+        WHERE type_id=#{type_id}
+    </update>
+
+    <!-- Delete a type by ID -->
+    <delete id="deleteType" parameterType="int">
+        DELETE FROM Type WHERE type_id=#{type_id}
+    </delete>
+
+    <!-- Select a type by ID -->
+    <select id="selectTypeById" parameterType="int" resultType="com.example.LostAndFoundSystem.entity.Type">
+        SELECT * FROM Type WHERE type_id=#{type_id}
+    </select>
+
+    <!-- Select all types -->
+    <select id="selectAllTypes" resultType="com.example.LostAndFoundSystem.entity.Type">
+        SELECT * FROM Type
+    </select>
+</mapper>

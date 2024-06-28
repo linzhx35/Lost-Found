@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis mapper for User -->
+<mapper namespace="com.example.LostAndFoundSystem.mapper.UserMapper">
+    <!-- Insert a new user -->
+    <insert id="insertUser" parameterType="com.example.LostAndFoundSystem.entity.User">
+        INSERT INTO User (user_id, username, password, email, role)
+        VALUES (#{user_id}, #{username}, #{password}, #{email}, #{role})
+    </insert>
+
+    <!-- Update an existing user -->
+    <update id="updateUser" parameterType="com.example.LostAndFoundSystem.entity.User">
+        UPDATE User
+        SET username=#{username}, password=#{password}, email=#{email}, role=#{role}
+        WHERE user_id=#{user_id}
+    </update>
+
+    <!-- Delete a user by ID -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM User WHERE user_id=#{user_id}
+    </delete>
+
+    <!-- Select a user by ID -->
+    <select id="selectUserById" parameterType="int" resultType="com.example.LostAndFoundSystem.entity.User">
+        SELECT * FROM User WHERE user_id=#{user_id}
+    </select>
+
+    <!-- Select all users -->
+    <select id="selectAllUsers" resultType="com.example.LostAndFoundSystem.entity.User">
+        SELECT * FROM User
+    </select>
+</mapper>

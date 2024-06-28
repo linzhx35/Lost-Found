@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis mapper for Post -->
+<mapper namespace="com.example.LostAndFoundSystem.mapper.PostMapper">
+    <!-- Insert a new post -->
+    <insert id="insertPost" parameterType="com.example.LostAndFoundSystem.entity.Post">
+        INSERT INTO Post (post_id, user_id, type_id, title, description, location, img_url, post_type, status)
+        VALUES (#{post_id}, #{user_id}, #{type_id}, #{title}, #{description}, #{location}, #{img_url}, #{post_type}, #{status})
+    </insert>
+
+    <!-- Update an existing post -->
+    <update id="updatePost" parameterType="com.example.LostAndFoundSystem.entity.Post">
+        UPDATE Post SET title=#{title}, description=#{description}, location=#{location}, img_url=#{img_url}, post_type=#{post_type}, status=#{status}
+        WHERE post_id=#{post_id}
+    </update>
+
+    <!-- Delete a post by ID -->
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM Post WHERE post_id=#{post_id}
+    </delete>
+
+    <!-- Select a post by ID -->
+    <select id="selectPostById" parameterType="int" resultType="com.example.LostAndFoundSystem.entity.Post">
+        SELECT * FROM Post WHERE post_id=#{post_id}
+    </select>
+
+    <!-- Select all posts -->
+    <select id="selectAllPosts" resultType="com.example.LostAndFoundSystem.entity.Post">
+        SELECT * FROM Post
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis mapper for Comment -->
+<mapper namespace="com.example.LostAndFoundSystem.mapper.CommentMapper">
+    <!-- Insert a new comment -->
+    <insert id="insertComment" parameterType="com.example.LostAndFoundSystem.entity.Comment">
+        INSERT INTO Comment (comment_id, post_id, user_id, content, time, parent_id)
+        VALUES (#{comment_id}, #{post_id}, #{user_id}, #{content}, #{time}, #{parent_id})
+    </insert>
+
+    <!-- Update an existing comment -->
+    <update id="updateComment" parameterType="com.example.LostAndFoundSystem.entity.Comment">
+        UPDATE Comment SET content=#{content}, time=#{time}
+        WHERE comment_id=#{comment_id}
+    </update>
+
+    <!-- Delete a comment by ID -->
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM Comment WHERE comment_id=#{comment_id}
+    </delete>
+
+    <!-- Select a comment by ID -->
+    <select id="selectCommentById" parameterType="int" resultType="com.example.LostAndFoundSystem.entity.Comment">
+        SELECT * FROM Comment WHERE comment_id=#{comment_id}
+    </select>
+
+    <!-- Select all comments -->
+    <select id="selectAllComments" resultType="com.example.LostAndFoundSystem.entity.Comment">
+        SELECT * FROM Comment
+    </select>
+</mapper>
